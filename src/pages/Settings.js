@@ -8,7 +8,7 @@ function Settings() {
     const navigate = useNavigate()
     const tokens = JSON.parse(localStorage.getItem('changableToken'))
     const mainToken = JSON.parse(localStorage.getItem('token'))
-    let [id, setId] = useState(tokens.id)
+    let id = tokens.id
     let [token, setToken] = useState(tokens.token)
     let [balance, setBalance] = useState(tokens.balance)
     const changeToken = () => {
