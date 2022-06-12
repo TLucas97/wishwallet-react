@@ -1,6 +1,5 @@
 import React from 'react'
 import Actions from '../components/Actions'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Form from '../components/Form'
 import { v4 as uuidv4 } from 'uuid'
@@ -14,7 +13,7 @@ function AddToken() {
         handleSubmit,
         formState: { errors },
     } = useForm()
-    const onSubmit = (e) => {
+    const addToken = (e) => {
         const newToken = {
             id: uuidv4(),
             token: e.token,
@@ -35,7 +34,7 @@ function AddToken() {
         <>
             <Actions buttonName="Back" easyRoutes="/" btnClass="forcedColor" />
             <Form
-                submit={handleSubmit(onSubmit)}
+                submit={handleSubmit(addToken)}
                 buttons={true}
                 formTitle="Add token"
                 buttonType="submit"

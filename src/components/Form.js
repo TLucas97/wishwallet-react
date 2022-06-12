@@ -1,5 +1,5 @@
 import React from 'react'
-import TextField from '@mui/material/TextField'
+import { TextField } from "@material-ui/core"
 import Button from '@mui/material/Button'
 
 function Form(props) {
@@ -76,7 +76,7 @@ function Form(props) {
                             {...props.balanceRegister}
                         />
                     </div>
-                    <Buttons type='submit' buttonsVision={props.buttons} />
+                    <Buttons type="submit" buttonsVision={props.buttons} />
                 </form>
             </div>
         </>
