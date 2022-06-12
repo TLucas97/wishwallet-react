@@ -19,7 +19,7 @@ body {
 }
 
 .home-width {
-    width: 500px;
+    width: 520px;
     margin: 0 auto;
 }
 
@@ -29,8 +29,6 @@ body {
 
 .input-size {
     background: white;
-    border-radius: 5px;
-    width: 49%;
 }
 
 .items-render li {

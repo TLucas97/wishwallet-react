@@ -10,6 +10,7 @@ function Form(props) {
                 <>
                     <div className="d-flex justify-content-end mt-3">
                         <Button
+                            type="submit"
                             variant="contained"
                             color="secondary"
                             onClick={props.addToken}
@@ -24,6 +25,7 @@ function Form(props) {
                 <>
                     <div className="d-flex justify-content-between mt-3">
                         <Button
+                            type="submit"
                             variant="contained"
                             color="error"
                             onClick={props.removeToken}
@@ -31,6 +33,7 @@ function Form(props) {
                             Remove
                         </Button>
                         <Button
+                            type="submit"
                             variant="contained"
                             color="secondary"
                             onClick={props.editToken}
@@ -46,27 +49,35 @@ function Form(props) {
         <>
             <div className="home-width pt-4">
                 <h5>{props.formTitle}</h5>
-                <div className="d-flex justify-content-between">
-                    <TextField
-                        label="Token"
-                        placeholder="USD"
-                        variant="filled"
-                        className="input-size"
-                        color="success"
-                        onChange={props.tokenTarget}
-                        value={props.tokenValue}
-                    />
-                    <TextField
-                        label="Balance"
-                        placeholder="0.00"
-                        variant="filled"
-                        className="input-size"
-                        color="success"
-                        onChange={props.balanceTarget}
-                        value={props.balanceValue}
-                    />
-                </div>
-                <Buttons buttonsVision={props.buttons} />
+                <form onSubmit={props.submit}>
+                    <div className="d-flex justify-content-between">
+                        <TextField
+                            label="Token"
+                            placeholder="USD"
+                            variant="filled"
+                            className="input-size"
+                            color="success"
+                            onChange={props.tokenTarget}
+                            value={props.tokenValue}
+                            error={props.tokenError}
+                            helperText={props.tokenErrorText}
+                            {...props.tokenRegister}
+                        />
+                        <TextField
+                            label="Balance"
+                            placeholder="0.00"
+                            variant="filled"
+                            className="input-size"
+                            color="success"
+                            onChange={props.balanceTarget}
+                            value={props.balanceValue}
+                            error={props.balanceError}
+                            helperText={props.balanceErrorText}
+                            {...props.balanceRegister}
+                        />
+                    </div>
+                    <Buttons type='submit' buttonsVision={props.buttons} />
+                </form>
             </div>
         </>
     )
