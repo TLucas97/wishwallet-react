@@ -4,9 +4,41 @@ import { useNavigate } from 'react-router-dom'
 import Form from '../components/Form'
 import { v4 as uuidv4 } from 'uuid'
 import { useForm } from 'react-hook-form'
+import { useSnackbar } from 'react-simple-snackbar'
 
 function AddToken() {
+    const error = {
+        position: 'top-center',
+        style: {
+            backgroundColor: '#F94C66',
+            color: 'white',
+            fontFamily: 'Roboto, sans-serif',
+            fontSize: '20px',
+            textAlign: 'center',
+        },
+        closeStyle: {
+            color: 'white',
+            fontSize: '16px',
+        },
+    }
+    const success = {
+        position: 'top-center',
+        style: {
+            backgroundColor: '#53BF9D',
+            color: 'white',
+            fontFamily: 'Roboto, sans-serif',
+            fontSize: '20px',
+            textAlign: 'center',
+        },
+        closeStyle: {
+            color: 'white',
+            fontSize: '16px',
+        },
+    }
+    const [openErrorSnackbar] = useSnackbar(error)
+    const [openSuccessSnackbar] = useSnackbar(success)
     const LOCAL_STORAGE_KEY = 'token'
+    const getTokens = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
     const navigate = useNavigate()
     const {
         register,
@@ -16,17 +48,29 @@ function AddToken() {
     const addToken = (e) => {
         const newToken = {
             id: uuidv4(),
-            token: e.token,
+            token: e.token.toUpperCase(),
             balance: e.balance,
         }
-        console.log(newToken)
-        if (!localStorage.getItem(LOCAL_STORAGE_KEY)) {
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([newToken]))
-            navigate('/')
+
+        if (getTokens) {
+            const currentTokens = getTokens.map((token) => token.token)
+            if (currentTokens.includes(newToken.token)) {
+                openErrorSnackbar('This token already exists.')
+            } else {
+                const getToken = JSON.parse(
+                    localStorage.getItem(LOCAL_STORAGE_KEY)
+                )
+                getToken.push(newToken)
+                localStorage.setItem(
+                    LOCAL_STORAGE_KEY,
+                    JSON.stringify(getToken)
+                )
+                openSuccessSnackbar('Token successfully added to your wallet!')
+                navigate('/')
+            }
         } else {
-            const getToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
-            getToken.push(newToken)
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(getToken))
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([newToken]))
+            openSuccessSnackbar('Token successfully added to your wallet!')
             navigate('/')
         }
     }

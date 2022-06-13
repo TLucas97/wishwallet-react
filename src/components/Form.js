@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextField } from "@material-ui/core"
+import { TextField } from '@material-ui/core'
 import Button from '@mui/material/Button'
 
 function Form(props) {
@@ -52,6 +52,10 @@ function Form(props) {
                 <form onSubmit={props.submit}>
                     <div className="d-flex justify-content-between">
                         <TextField
+                            style={{
+                                backgroundColor: 'white',
+                                borderRadius: '5px',
+                            }}
                             label="Token"
                             placeholder="USD"
                             variant="filled"
@@ -64,6 +68,10 @@ function Form(props) {
                             {...props.tokenRegister}
                         />
                         <TextField
+                            style={{
+                                backgroundColor: 'white',
+                                borderRadius: '5px',
+                            }}
                             label="Balance"
                             placeholder="0.00"
                             variant="filled"
