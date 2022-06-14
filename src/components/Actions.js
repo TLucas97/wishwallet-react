@@ -123,6 +123,10 @@ function AddToken() {
                 })}
                 balanceRegister={register('balance', {
                     required: 'Required field',
+                    min: {
+                        value: 1,
+                        message: `Balance must be positive`,
+                    },
                     pattern: {
                         value: /^(0|[1-9]\d*)(\.\d+)?$/,
                         message: 'Balance must be a number',
@@ -220,6 +224,10 @@ function EditToken() {
                 balanceRegister={register('balance', {
                     required: 'Required field',
                     value: balance,
+                    min: {
+                        value: 1,
+                        message: `Balance must be positive`,
+                    },
                     pattern: {
                         value: /^(0|[1-9]\d*)(\.\d+)?$/,
                         message: 'Balance must be a number',

@@ -20,6 +20,7 @@ function WalletList() {
         return (
             <div className="pb-2 d-flex items-render" key={item.token}>
                 <FaEdit
+                    style={{width: '25px', cursor: 'pointer'}}
                     onClick={() => {
                         goToSettings(item)
                     }}
