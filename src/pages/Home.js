@@ -1,11 +1,11 @@
 import React from 'react'
-import Actions from '../components/Actions'
+import Header from '../components/Header'
 import WalletList from '../components/WalletList'
 
 function Home() {
     return (
         <>
-            <Actions />
+            <Header />
             <div className="pt-4">
                 <div className="d-flex justify-content-between home-width">
                     <div>

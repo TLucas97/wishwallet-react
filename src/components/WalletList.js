@@ -12,8 +12,9 @@ function WalletList() {
             token: i.token,
             balance: i.balance,
         }
+        localStorage.removeItem('stateManager')
         localStorage.setItem('changableToken', JSON.stringify(changableToken))
-        navigate('/settings')
+        navigate('/manager')
     }
     const tokensList = tokens?.map((item) => {
         return (

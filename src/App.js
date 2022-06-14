@@ -1,9 +1,8 @@
 import './styles/App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Header from './components/Header'
+import Logo from './components/Logo'
 import Home from './pages/Home.js'
-import Form from './pages/AddToken.js'
-import Settings from './pages/Settings.js'
+import TokenManager from './pages/TokenManager.js'
 import SnackbarProvider from 'react-simple-snackbar'
 
 function App() {
@@ -11,11 +10,10 @@ function App() {
         <div className="App">
             <SnackbarProvider>
                 <Router>
-                    <Header />
+                    <Logo />
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/form" element={<Form />} />
-                        <Route path="/settings" element={<Settings />} />
+                        <Route path="/manager" element={<TokenManager />} />
                     </Routes>
                 </Router>
             </SnackbarProvider>
