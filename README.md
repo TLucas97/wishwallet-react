@@ -7,39 +7,54 @@
 </p>
 
 # Project functionalities
+
 #### ● You can add multiple tokens to your wallet with a balance value
+
 #### ● You can easily edit these tokens by chaging title and value of balances
+
 #### ● You can easily delete tokens
+
 #### ● All token data will be stored in the localStorage
 
 <br />
 <br />
 
-# Project testing
-## You can use and test this project by clicking [here](https://wishwallet-kleverchallenge-tarcisio.netlify.app/)
-
-<br />
-<br />
-
 # Project display
+
 ## ● Addition, edit and removal
+
 <img src="src/assets/walletShow.gif" alt="test">
 
 <br />
 
 ## ● Validations
+
 <img src="src/assets/walletValidation.gif" alt="test">
 
 <br />
 <br />
 
+# Project testing
+
+## You can use and test this project by clicking [here.](https://wishwallet-kleverchallenge-tarcisio.netlify.app/)
+
+<br/>
+<br/>
+
 # Resources used to build this project
+
 #### [● React.js](https://reactjs.org/)
+
 #### [● Material UI](https://mui.com/)
+
 #### [● Bootstrap react css classes](https://react-bootstrap.github.io/)
+
 #### [● uuidv4](https://www.npmjs.com/package/uuidv4)
+
 #### [● react-hook-form](https://react-hook-form.com/)
+
 #### [● react-simple-snackbar](https://www.npmjs.com/package/react-simple-snackbar)
+
 #### [● react-icons](https://react-icons.github.io/react-icons/)
 
 <br />
