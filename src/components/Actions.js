@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
 import { v4 as uuidv4 } from 'uuid'
 
+// Defining modal style.
 const style = {
     position: 'absolute',
     top: '50%',
@@ -25,6 +26,7 @@ const style = {
     p: 4,
 }
 
+// Defining toast error style.
 const error = {
     position: 'top-center',
     style: {
@@ -39,6 +41,8 @@ const error = {
         fontSize: '16px',
     },
 }
+
+// Defining toast success style.
 const success = {
     position: 'top-center',
     style: {
@@ -66,12 +70,13 @@ function AddToken() {
         formState: { errors },
     } = useForm()
     const addToken = (e) => {
+        // Getting values from form and also adding the uuid.
         const newToken = {
             id: uuidv4(),
             token: e.token.toUpperCase(),
             balance: e.balance,
         }
-
+        // Checking if the token already exists.
         if (mainToken) {
             const currentTokens = mainToken.map((token) => token.token)
             if (currentTokens.includes(newToken.token)) {
@@ -89,18 +94,20 @@ function AddToken() {
                 navigate('/')
             }
         } else {
+            // If the token doesn't exist, it will be added to the local storage.
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([newToken]))
             openSuccessSnackbar('Token successfully added to your wallet!')
             navigate('/')
         }
     }
-    let deleteState = () => {
+    // Removing current manager state from localStorage
+    const removeState = () => {
         localStorage.removeItem('stateManager')
     }
     return (
         <>
             <Header
-                stateManager={deleteState}
+                stateManager={removeState}
                 buttonName="Back"
                 easyRoutes="/"
                 btnClass="forcedColor"
@@ -110,6 +117,7 @@ function AddToken() {
                 buttons={true}
                 formTitle="Add token"
                 buttonType="submit"
+                // Adding validations to the form.
                 tokenRegister={register('token', {
                     required: 'Required field',
                     maxLength: {
@@ -132,6 +140,7 @@ function AddToken() {
                         message: 'Balance must be a number',
                     },
                 })}
+                // Adding error messages to the form.
                 tokenError={!!errors?.token}
                 tokenErrorText={errors?.token ? errors.token.message : null}
                 balanceError={!!errors?.balance}
@@ -161,11 +170,13 @@ function EditToken() {
         formState: { errors },
     } = useForm()
     const changeToken = (e) => {
+        // Getting values from form and adding the existing uuid.
         const newToken = {
             id: id,
             token: e.token,
             balance: e.balance,
         }
+        // Checking if changable token and main token matches for balance only saves.
         if (changableToken.token === newToken.token) {
             mainToken.map((item) => {
                 if (item.id === id) {
@@ -177,10 +188,12 @@ function EditToken() {
                 return navigate('/')
             })
         } else {
+            // Checking if the token already exists.
             const currentTokens = mainToken.map((item) => item.token)
             if (currentTokens.includes(newToken.token)) {
                 openErrorSnackbar('This token already exists.')
             } else {
+                // If the token doesn't exist, it will be added to the local storage.
                 mainToken.map((item) => {
                     if (item.id === id) {
                         item.token = newToken.token.toUpperCase()
@@ -195,6 +208,7 @@ function EditToken() {
     }
     const deleteToken = () => {
         mainToken.map((item) => {
+            // Comparing the uuid of the token to be deleted.
             if (item.id === id) {
                 const newToken = mainToken.splice(mainToken.indexOf(item), 1)
                 console.log(newToken)
@@ -204,11 +218,21 @@ function EditToken() {
             return navigate('/')
         })
     }
+    // Removing current manager state from localStorage
+    const removeState = () => {
+        localStorage.removeItem('stateManager')
+    }
     return (
         <>
-            <Header buttonName="Back" btnClass="forcedColor" easyRoutes="/" />
+            <Header
+                stateManager={removeState}
+                buttonName="Back"
+                btnClass="forcedColor"
+                easyRoutes="/"
+            />
             <Form
                 submit={handleSubmit(changeToken)}
+                // Adding validations to the form.
                 tokenRegister={register('token', {
                     value: token,
                     required: 'Required field',
@@ -237,6 +261,7 @@ function EditToken() {
                 tokenTarget={(event) => setToken(event.target.value)}
                 balanceTarget={(event) => setBalance(event.target.value)}
                 removeToken={handleOpen}
+                // Adding error messages to the form.
                 tokenError={!!errors?.token}
                 tokenErrorText={errors?.token ? errors.token.message : null}
                 balanceError={!!errors?.balance}
@@ -245,6 +270,7 @@ function EditToken() {
                 }
             />
             <div>
+                {/* Modal for token removal confirmation. */}
                 <Modal
                     open={open}
                     aria-labelledby="modal-modal-title"
@@ -292,4 +318,5 @@ function EditToken() {
     )
 }
 
+// Both functions will be used in the home section.
 export { AddToken, EditToken }

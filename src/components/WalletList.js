@@ -4,20 +4,21 @@ import { useNavigate } from 'react-router-dom'
 
 function WalletList() {
     const navigate = useNavigate()
-    const tokens = JSON.parse(localStorage.getItem('token'))
+    const mainToken = JSON.parse(localStorage.getItem('token'))
     const goToSettings = (i) => {
-        console.log(i.balance, i.token)
+        // Make a copy of the current token for comparison
         const changableToken = {
             id: i.id,
             token: i.token,
             balance: i.balance,
         }
-        localStorage.removeItem('stateManager')
+        localStorage.setItem('stateManager', 'EditToken')
         localStorage.setItem('changableToken', JSON.stringify(changableToken))
         navigate('/manager')
     }
-    const tokensList = tokens?.map((item) => {
+    const tokensList = mainToken?.map((item) => {
         return (
+            // Current tokens rendered in the list
             <div className="pb-2 d-flex items-render" key={item.token}>
                 <FaEdit
                     style={{width: '25px', cursor: 'pointer'}}
@@ -29,7 +30,8 @@ function WalletList() {
             </div>
         )
     })
-    const balanceList = tokens?.map((item) => {
+    const balanceList = mainToken?.map((item) => {
+          // Current balances formated in the list
         const formatedBalance = parseFloat(item.balance).toLocaleString('pt-br')
         return (
             <li className="pb-2" key={item.balance}>

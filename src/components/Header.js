@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
 
 function Header(props) {
+    // Settings state to add tokens and balances
     const setStateManager = () => {
-        const state = 'AddToken'
-        localStorage.setItem('stateManager', state)
+        localStorage.setItem('stateManager', 'AddToken')
     }
     return (
         <div>
@@ -18,6 +18,7 @@ function Header(props) {
                     <h2>Wish Wallet</h2>
                 </div>
                 <div>
+                    {/* Managing button routes and some other props */}
                     <Link to={props.easyRoutes ?? '/manager'}>
                         <Button
                             onClick={props.stateManager ?? setStateManager}

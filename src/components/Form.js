@@ -5,6 +5,7 @@ import Button from '@mui/material/Button'
 function Form(props) {
     function Buttons() {
         const buttonsVision = props.buttons
+        // Condition to show buttons
         if (buttonsVision) {
             return (
                 <>
@@ -13,7 +14,6 @@ function Form(props) {
                             type="submit"
                             variant="contained"
                             color="secondary"
-                            onClick={props.addToken}
                         >
                             Save
                         </Button>
@@ -36,7 +36,6 @@ function Form(props) {
                             type="submit"
                             variant="contained"
                             color="secondary"
-                            onClick={props.editToken}
                         >
                             Save
                         </Button>
@@ -46,6 +45,7 @@ function Form(props) {
         }
     }
     return (
+        // Form to add or edit tokens and balances in the wallet. Props will be used for actions
         <>
             <div className="home-width pt-4">
                 <h5>{props.formTitle}</h5>
